@@ -34,7 +34,7 @@ async function fetchUsersForAdmin() {
                 <td>${u.growthIndex || 0}</td>
                 <td>${u.status || '-'}</td>
                 <td>
-                    ${u.level === '1' ? `<button class="action-btn" onclick="upgradeUser('${u.id}', 'Pro')">Pro 승인</button>` : ''}
+                    ${u.level === '1' ? `<button class="action-btn" onclick="upgradeUser('${u.id}', 'Pro')">Pro 승인 (입금확인)</button>` : ''}
                     ${u.level === 'Pro' ? `<button class="action-btn" onclick="upgradeUser('${u.id}', 'Elite')">Elite 승인</button>` : ''}
                     ${u.level === 'Elite' ? `<span style="color:#9ca3af">최고 등급</span>` : ''}
                 </td>
@@ -48,7 +48,7 @@ async function fetchUsersForAdmin() {
 }
 
 async function upgradeUser(userId, newLevel) {
-    if (!confirm(`해당 회원을 ${newLevel} 등급으로 승격시키겠습니까?`)) return;
+    if (!confirm(`[입금 확인 필수]\n\n해당 회원을 ${newLevel} 등급으로 승격시키겠습니까?`)) return;
 
     try {
         const res = await fetch(`${API_BASE}/users/${userId}/level`, {
